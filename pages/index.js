@@ -93,10 +93,14 @@ const Index = ({results}) => {
         return myIndex
     }
 
+    const termSearch = (e) => {
+        setSearchTerm(e);
+    }
+
     return (
         <div className={style.container}>
             <Header />
-            <Search searchTerm={setSearchTerm} searchFilm={searchFilm}/>
+            <Search termSearch={termSearch} searchFilm={searchFilm}/>
             
             <div className={style.content}>
                 {results && listFilmFavorites.map((film,key) => (

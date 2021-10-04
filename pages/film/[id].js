@@ -7,7 +7,7 @@ import Header from "../../components/header"
 import FilmMainInfo from "../../components/filmMainInfo"
 import Characters from "../../components/characters"
 import OtherInfos from "../../components/otherInfos"
-
+import Tolltip from "../../components/tolltip"
 /* Style */
 import style from '../styles/filmDetail.module.scss'
 
@@ -182,9 +182,35 @@ const FilmDetail = ({resultsFilm, resultsPeople, resultsSpecies, resultsPlanets,
                 <div className={style.specs}>
                     <div className={style.titleItem}><h2>Characters</h2></div>
                     <div className={style.people}>
+                        <div className={style.peopleChild}>
+                            {teamFilm[0].map((val,key) => (
+                                <div className={style.personDetail} key={key}>
+                                    <span className={style.imagePerson}><img width="20" height="20" src="/assets/person.png" /></span>{val.name}
+                                    <Tolltip name={val.name} birth_year={val.birth_year} eye_color={val.eye_color} gender={val.gender}  hair_color={val.hair_color} skin_color={val.skin_color} />
+                                </div>
+                            ))}
+                        </div>
+                        <div className={style.peopleChild}>
+                            {teamFilm[1].map((val,key) => (
+                                <div className={style.personDetail} key={key}>
+                                    <span className={style.imagePerson}><img width="20" height="20" src="/assets/person.png" /></span>{val.name}
+                                    <Tolltip name={val.name} birth_year={val.birth_year} eye_color={val.eye_color} gender={val.gender}  hair_color={val.hair_color} skin_color={val.skin_color} />
+                                </div>
+                            ))}
+                        </div>
+                        <div className={style.peopleChild}>
+                            {teamFilm[2].map((val,key) => (
+                                <div className={style.personDetail} key={key}>
+                                    <span className={style.imagePerson}><img width="20" height="20" src="/assets/person.png" /></span>{val.name}
+                                    <Tolltip name={val.name} birth_year={val.birth_year} eye_color={val.eye_color} gender={val.gender}  hair_color={val.hair_color} skin_color={val.skin_color} />
+                                </div>
+                            ))}
+                        </div>
+                        {/*
                         <Characters list={teamFilm[0]}/>
                         <Characters list={teamFilm[1]}/>
                         <Characters list={teamFilm[2]}/>
+                        */}
                     </div>
                 </div>
             </div>
@@ -204,43 +230,6 @@ const FilmDetail = ({resultsFilm, resultsPeople, resultsSpecies, resultsPlanets,
 }
 
 export default FilmDetail
-
-/*
-export async function getServerSideProps(context){
-     // params contains the post `id`.
-     let id = context.params.id
-
-     //get the film information
-     const resFilm = await fetch(`http://localhost:3000/api/film/${id}`);
-     const dataFilm = await resFilm.json();
- 
-     const resPeople = await fetch(`http://localhost:3000/api/swapiPeople`);
-     const dataPeople = await resPeople.json();
- 
-     const resSpecies = await fetch(`http://localhost:3000/api/swapiSpecies`);
-     const dataSpecies = await resSpecies.json();
- 
-     const resPlanets = await fetch(`http://localhost:3000/api/swapiPlanets`);
-     const dataPlanets = await resPlanets.json();
- 
-     const resVehicles = await fetch(`http://localhost:3000/api/swapiVehicles`);
-     const dataVehicles = await resVehicles.json();
- 
-     const resStarships = await fetch(`http://localhost:3000/api/swapiStarships`);
-     const dataStarships = await resStarships.json();
- 
-     return{
-         props:{
-             resultsFilm:dataFilm.results,
-             resultsPeople:dataPeople.results,
-             resultsSpecies:dataSpecies.results,
-             resultsPlanets:dataPlanets.results,
-             resultsVehicles:dataVehicles.results,
-             resultsStarships:dataStarships.results
-         }
-     }
-}
-*/
 
 export async function getStaticPaths() {
     return {

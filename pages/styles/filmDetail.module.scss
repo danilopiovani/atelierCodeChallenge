@@ -1,3 +1,6 @@
+
+
+
 //Variables
 @import "colors";
 $primaryFont: Verdana, Geneva, Tahoma, sans-serif;
@@ -8,18 +11,6 @@ $primaryFont: Verdana, Geneva, Tahoma, sans-serif;
 @import "description";
 @import "image";
 @import "buttomPrimary";
-
-@media screen and (max-width: 800px) {
-    .people, .titleItem, .description{
-        flex-direction: column;
-        width: 90% !important;
-    }
-    .peopleChild{
-        width: 100% !important;
-    }
-}
-
-
 
 
 .filmeDetail{
@@ -38,6 +29,18 @@ $primaryFont: Verdana, Geneva, Tahoma, sans-serif;
 
 /*================================ PEOPLE ==============================================*/
 
+@media screen and (max-width: 800px) {
+    .people, .titleItem{
+        flex-direction: column !important;
+        width: 90% !important;
+    }
+    .peopleChild {
+        width: 100% !important;
+    }
+}
+
+
+
 .people{
     width: 44%;
     display: flex;
@@ -52,6 +55,7 @@ $primaryFont: Verdana, Geneva, Tahoma, sans-serif;
 
 .peopleChild{
     width: 33%;  
+    border: 1px solid red;
 }
 
 .personDetail{
