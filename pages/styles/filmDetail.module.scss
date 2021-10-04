@@ -1,0 +1,194 @@
+//Variables
+@import "colors";
+$primaryFont: Verdana, Geneva, Tahoma, sans-serif;
+
+//imports
+@import "rating";
+@import "container";
+@import "description";
+@import "image";
+@import "buttomPrimary";
+
+@media screen and (max-width: 800px) {
+    .people, .titleItem, .description{
+        flex-direction: column;
+        width: 90% !important;
+    }
+    .peopleChild{
+        width: 100% !important;
+    }
+}
+
+
+
+
+.filmeDetail{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    
+}
+
+
+.titleItem{
+    width: 44%;
+    margin: auto;
+    font-family:$primaryFont;
+}
+
+/*================================ PEOPLE ==============================================*/
+
+.people{
+    width: 44%;
+    display: flex;
+    margin: auto;
+    text-align: left;
+    flex-direction: row;
+    justify-content:center;
+    background-color: $bgColor;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.peopleChild{
+    width: 33%;  
+}
+
+.personDetail{
+    padding: 5px;
+    margin: 3px;
+}
+
+.personDetailTop{
+    background-color: $bgPrimary;
+    color: #333;
+    font-weight: bold;
+    padding: 5px;
+    margin: 3px;
+    border: 1px solid#333;
+}
+
+.personDetail:hover .tooltip {
+    display: block;
+}
+
+.personDetail:nth-child(odd){
+    background-color: #777;
+}
+
+.personDetail:nth-child(even){
+    background-color: #555;
+}
+
+.subdivisionPeople{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    text-align: left;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #AAA;
+}
+
+.imagePerson{
+    padding: 5px;
+    vertical-align: middle;
+}
+
+/*================================ PEOPLE ==============================================*/
+
+
+/*================================ TOLLTIP ==============================================*/
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #EEE !important;
+    color: black;
+    transform: translateX(60%) translateY(-100%) translateZ(0);
+    width: 200px;
+    max-width: 100%;
+    border-radius: .3rem;
+    text-align: left;
+    border: 2px solid $bgPrimary !important;
+    padding: 3px;
+}
+
+.tooltip p {
+    background-color: #BBB;
+    color: black;
+    margin: 0;
+    padding: 5px;
+    font-size: small;
+    font-family: $primaryFont;
+}
+
+.tooltip span {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    font-size: small;
+    font-family: $primaryFont;
+}
+
+.tooltip div{
+    background-color: $bgPrimary !important;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    font-size:18px ;
+    padding: 5px;
+}
+
+.tooltipList{
+    background-color: white;
+    padding: 3px;
+    margin: 2px;
+}
+/*================================ TOLLTIP ==============================================*/
+
+
+
+// rating oFF
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+  }
+  .rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+  }
+  .rating > span:hover:before,
+  .rating > span:hover ~ span:before {
+     content: "\2764";
+     position: absolute;
+     color: red;
+     cursor: pointer;
+  }
+
+
+  // rating ON
+.ratingOn {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    color: red;
+    font-size: 30px;
+    content: "\2764";
+    padding: 10px;
+  }
+  .ratingOn > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+  }
+  .ratingOn > span:hover:before,
+  .ratingOn > span:hover ~ span:before {
+     content: "\2764";
+     position: absolute;
+     color: white;
+     cursor: pointer;
+  }

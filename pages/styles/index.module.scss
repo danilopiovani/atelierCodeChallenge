@@ -1,0 +1,67 @@
+//Variables
+$primaryFont: Verdana, Geneva, Tahoma, sans-serif;
+@import "colors";
+
+//imports
+@import "rating";
+@import "container";
+@import "description";
+@import "image";
+@import "buttomPrimary";
+
+
+@media screen and (max-width: 800px) {
+    .description, .search{
+        flex-direction: column;
+        width: 90% !important;
+    }
+    .search input[type=text]{
+        width: 60% !important;
+    }
+}
+
+.content{
+    /*border: 1px solid blue;*/
+    min-height: 85vh;
+}
+
+
+// Search ===========================================
+.search{
+    margin: auto;
+    padding-bottom: 40px;
+
+}
+.search input[type=text]{
+    width: 500px;
+    padding: 6px;
+    font-size: 16px;
+    margin: 10px;
+}
+
+.search input[type=submit]{
+    background-color: lightblue;
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    border: 0;
+    cursor: pointer;
+}
+// Search ===========================================
+
+.filmeDetail{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    
+}
+.spacer{
+    width: 43%;
+    margin: auto;
+    min-height: 20px;
+}
+
+
+

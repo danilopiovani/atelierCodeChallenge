@@ -1,0 +1,44 @@
+
+// rating oFF
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+  }
+  .rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+  }
+  .rating > span:hover:before,
+  .rating > span:hover ~ span:before {
+     content: "\2764";
+     position: absolute;
+     color: red;
+     cursor: pointer;
+  }
+
+
+  // rating ON
+  .ratingOn {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      color: red;
+      font-size: 30px;
+      content: "\2764";
+      padding: 10px;
+    }
+    .ratingOn > span {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;
+    }
+    .ratingOn > span:hover:before,
+    .ratingOn > span:hover ~ span:before {
+       content: "\2764";
+       position: absolute;
+       color: white;
+       cursor: pointer;
+    }
