@@ -259,34 +259,106 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
     // params contains the post `id`.
     let id = context.params.id
+    let numberPages;
 
     //get the film information
-    const resFilm = await fetch(`http://localhost:3000/api/film/${id}`);
+    const resFilm = await fetch(`https://swapi.dev/api/films/${id}/?format=json`);
     const dataFilm = await resFilm.json();
 
-    const resPeople = await fetch(`http://localhost:3000/api/swapiPeople`);
+    //People
+    const resPeople = await fetch(`https://swapi.dev/api/people/?format=json`);
     const dataPeople = await resPeople.json();
 
-    const resSpecies = await fetch(`http://localhost:3000/api/swapiSpecies`);
-    const dataSpecies = await resSpecies.json();
-
-    const resPlanets = await fetch(`http://localhost:3000/api/swapiPlanets`);
+    let finalPeopleList = dataPeople.results
+    numberPages = Math.ceil(dataPeople.count/10);
+    let i, x;
+    for(i=2; i<=numberPages; i++){
+        const resPeoplePage = await fetch(`https://swapi.dev/api/people/?page=${i}&format=json`);
+        const dataPeoplePage = await resPeoplePage.json();
+        let pagePeopleReturn = dataPeoplePage.results;
+        for(x=0; x<pagePeopleReturn.length; x++){
+            finalPeopleList = [...finalPeopleList, pagePeopleReturn[x]]
+        }
+        
+    }
+    
+    // planets
+    const resPlanets = await fetch(`https://swapi.dev/api/planets/?format=json`);
     const dataPlanets = await resPlanets.json();
 
-    const resVehicles = await fetch(`http://localhost:3000/api/swapiVehicles`);
+    let finalPlanetsList = dataPlanets.results
+    numberPages = Math.ceil(dataPlanets.count/10);
+    
+    for(let i=2; i<=numberPages; i++){
+        const resPlanetsPage = await fetch(`https://swapi.dev/api/planets/?page=${i}&format=json`);
+        const dataPlanetsPage = await resPlanetsPage.json();
+        let pagePlanetsReturn = dataPlanetsPage.results;
+        for(let x=0; x<pagePlanetsReturn.length; x++){
+            finalPlanetsList = [...finalPlanetsList, pagePlanetsReturn[x]]
+        }
+        
+    }
+
+
+    // Species
+    const resSpecies = await fetch(`https://swapi.dev/api/species/?format=json`);
+    const dataSpecies = await resSpecies.json();
+
+    let finalSpeciesList = dataSpecies.results
+    numberPages = Math.ceil(dataSpecies.count/10);
+    
+    for(let i=2; i<=numberPages; i++){
+        const resSpeciesPage = await fetch(`https://swapi.dev/api/species/?page=${i}&format=json`);
+        const dataSpeciesPage = await resSpeciesPage.json();
+        let pageSpeciesReturn = dataSpeciesPage.results;
+        for(let x=0; x<pageSpeciesReturn.length; x++){
+            finalSpeciesList = [...finalSpeciesList, pageSpeciesReturn[x]]
+        }
+        
+    }
+
+    // Vehicles
+    const resVehicles = await fetch(`https://swapi.dev/api/vehicles/?format=json`);
     const dataVehicles = await resVehicles.json();
 
-    const resStarships = await fetch(`http://localhost:3000/api/swapiStarships`);
+    let finalVehiclesList = dataVehicles.results
+    numberPages = Math.ceil(dataVehicles.count/10);
+    
+    for(let i=2; i<=numberPages; i++){
+        const resVehiclesPage = await fetch(`https://swapi.dev/api/vehicles/?page=${i}&format=json`);
+        const dataVehiclesPage = await resVehiclesPage.json();
+        let pageVehiclesReturn = dataVehiclesPage.results;
+        for(let x=0; x<pageVehiclesReturn.length; x++){
+            finalVehiclesList = [...finalVehiclesList, pageVehiclesReturn[x]]
+        }
+        
+    }
+
+    //starships
+    const resStarships = await fetch(`https://swapi.dev/api/starships/?format=json`);
     const dataStarships = await resStarships.json();
+
+    let finalStarshipsList = dataStarships.results
+    numberPages = Math.ceil(dataStarships.count/10);
+    
+    for(let i=2; i<=numberPages; i++){
+        const resStarshipsPage = await fetch(`https://swapi.dev/api/starships/?page=${i}&format=json`);
+        const dataStarshipsPage = await resStarshipsPage.json();
+        let pageStarshipsReturn = dataStarshipsPage.results;
+        for(let x=0; x<pageStarshipsReturn.length; x++){
+            finalStarshipsList = [...finalStarshipsList, pageStarshipsReturn[x]]
+        }
+        
+    }
 
     return{
         props:{
-            resultsFilm:dataFilm.results,
-            resultsPeople:dataPeople.results,
-            resultsSpecies:dataSpecies.results,
-            resultsPlanets:dataPlanets.results,
-            resultsVehicles:dataVehicles.results,
-            resultsStarships:dataStarships.results
+            resultsFilm:dataFilm,
+            resultsPeople:finalPeopleList,
+            resultsSpecies:finalSpeciesList,
+            resultsPlanets:finalPlanetsList,
+            resultsVehicles:finalVehiclesList,
+            resultsStarships:finalStarshipsList
         }
     }
 }
